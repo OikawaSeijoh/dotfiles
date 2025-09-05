@@ -1,0 +1,53 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 5, y = 5 }
+dynamic_padding = true
+decorations = "none"
+opacity = 0.85           # semi-transparent (0.85–0.95 is good)
+
+[font]
+size = 6.0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Bold"  # <-- change from Regular to Bold
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+style = "Bold Italic"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style = "Bold Italic"
+
+
+[colors.primary]
+background = "0x000000"       # pure black background
+foreground = "0xeeeeee"
+
+[colors.normal]
+black   = "0x3f3f3f"
+red     = "0xff2c2c"
+green   = "0x44ff44"
+yellow  = "0xf4f400"
+blue    = "0x4f88ff"
+magenta = "0xcb71f2"
+cyan    = "0x68f0f0"
+white   = "0xdadada"
+
+[colors.bright]
+black   = "0x4d4d4d"
+red     = "0xff5555"
+green   = "0x66ff66"
+yellow  = "0xffff87"
+blue    = "0x6aafff"
+magenta = "0xe07eff"
+cyan    = "0x7dfcff"
+white   = "0xffffff"
+

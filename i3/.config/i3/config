@@ -1,0 +1,152 @@
+# i3 config file (v4) - Cleaned and Optimized
+
+set $mod Mod4
+
+# Fonts and Gaps
+font pango:FiraCode Nerd Font 10
+gaps inner 5
+gaps outer 5
+
+# Startup Applications
+exec_always --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf
+exec_always --no-startup-id ~/.config/i3/scripts/natural_scroll.sh
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kali.jpg
+exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id bash -c 'while true; do ~/.config/polybar/scripts/battery_alert.sh; sleep 60; done'
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/i3/monitors.sh
+
+# Volume and Audio
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Window Rules
+for_window [class=".*"] border pixel 2
+for_window [window_role="pop-up"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [class="Gnome-session-quit"] move position center
+
+# Mod Key Shortcuts
+bindsym $mod+Return exec alacritty
+bindsym $mod+q kill
+bindsym $mod+space exec rofi -show drun
+
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Layout
+bindsym $mod+b split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+
+# Container Navigation
+bindsym $mod+a focus parent
+
+# Resize Mode
+mode "resize" {
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Screenshots
+bindsym $mod+Shift+s exec flameshot gui --clipboard
+bindsym $mod+Print exec flameshot gui --path ~/Pictures/Screenshots
+
+# Keyboard Layout Toggle
+bindsym $mod+Shift+c exec "setxkbmap -query | grep colemak && setxkbmap us || setxkbmap us -variant colemak"
+
+# Restart/Exit
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id bash -c 'echo -e "Cancel\nLogout" | rofi -dmenu -p "Exit i3?" | grep -q Logout && i3-msg exit'
+
+# Workspace Names and Assignments
+set $ws1  "1: 🌐"
+set $ws2  "2:  "
+set $ws3  "3:  "
+set $ws4  "4:  "
+set $ws5  "5:  "
+set $ws6  "6:  "
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+assign [class="Brave-browser" instance="web"]    → $ws1
+assign [class="kitty"]                           → $ws2
+assign [class="code"]                            → $ws3
+assign [class="Brave-browser" instance="office"] → $ws4
+assign [class="Spotify"]                         → $ws5
+assign [class="Nemo"]                            → $ws6
+
+# Workspace navigation
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+Shift+h move container to workspace prev
+bindsym $mod+Ctrl+Shift+l move container to workspace next
+
+# Extra bindings
+bindsym $mod+p exec --no-startup-id /usr/local/bin/passmenu
+bindsym $mod+Shift+o exec ~/.local/bin/office-browser
+
+# Floating Modifier
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# Lock screen
+bindsym $mod+x exec i3lock-fancy
+

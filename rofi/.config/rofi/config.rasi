@@ -1,0 +1,67 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    drun-display-format: "{icon} {name}";
+    sidebar-mode: true;
+    display-drun: "📦 Apps";
+    display-run: "💡 Run";
+    display-window: "🗔 Window";
+    font: "FiraCode Nerd Font 10";
+}
+
+* {
+    background: #1e1e2e;
+    background-alt: #1e1e2e;
+    foreground: #cdd6f4;
+    border: 2px;
+    border-color: #8aadf4;
+    separatorcolor: #585b70;
+    padding: 6px;
+
+    selected-normal-background: rgba(138,173,244,0.15);
+    selected-normal-foreground: #cdd6f4;
+    selected-active-background: rgba(138,173,244,0.2);
+    selected-active-foreground: #cdd6f4;
+    selected-urgent-background: #f38ba8;
+    selected-urgent-foreground: #1e1e2e;
+}
+
+window {
+    location: center;
+    width: 500px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px;
+    border-color: @border-color;
+    background-color: @background;
+}
+
+mainbox {
+    border-radius: 12px;
+}
+
+listview {
+    background-color: @background;
+    alternate-background-color: @background;
+}
+
+element {
+    padding: 4px;
+    background-color: @background;
+    text-color: inherit;
+}
+
+element alternate {
+    background-color: @background;
+}
+
+element selected {
+    background-color: rgba(138,173,244,0.25);
+    text-color: #ffffff;
+}
+
+element-icon {
+    size: 1.2ch;
+    margin: 0px 6px 0px 0px;
+}
+@theme "Arc-Dark"
