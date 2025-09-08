@@ -1,21 +1,27 @@
+# Run fastfetch before instant prompt to avoid console output during initialization
+fastfetch
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -112,11 +118,10 @@ source $ZSH/oh-my-zsh.sh
 activate_env(){
 	source ~/pyenvs/"$1"/bin/activate
 }
-neofetch
 alias pass-sync='cd ~/.password-store && git pull && git push && cd -'
 
 export PATH="/usr/local/bin:$PATH"
 export PATH=$PATH:$HOME/go/bin
 export PATH="/opt/python3.9/bin:$PATH"
 
-
+# fastfetch moved to the top of the file to run before instant prompt
