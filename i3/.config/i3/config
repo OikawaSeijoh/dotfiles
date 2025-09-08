@@ -4,6 +4,7 @@ set $mod Mod4
 
 # Fonts and Gaps
 font pango:FiraCode Nerd Font 10
+gaps top 5
 gaps inner 5
 gaps outer 5
 
@@ -13,7 +14,7 @@ exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf
 exec_always --no-startup-id ~/.config/i3/scripts/natural_scroll.sh
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/kali.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/galaxy2r.jpg
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id bash -c 'while true; do ~/.config/polybar/scripts/battery_alert.sh; sleep 60; done'
 exec_always --no-startup-id ~/.config/polybar/launch.sh
