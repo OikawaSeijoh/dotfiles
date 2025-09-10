@@ -28,7 +28,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Window Rules
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 5
 for_window [window_role="pop-up"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [class="Gnome-session-quit"] move position center
